@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <title>手机电脑文件互传</title>
+  </head>
+  <body bgcolor="#d4e3e5">
+    <h1 align="center">文件上传成功</h1>
+    <h1 id="timer" style="color:red" align="center"></h1>
+    <span style="font-size:18px;"> </span><span style="font-size:24px;"><meta http-equiv="refresh" content="6;URL={{url_for('index')}}"> </span>
+    <span style="font-size:24px;"></span>
+  </body>
+  <SCRIPT type="text/javascript">
+    var maxtime = 3; //按秒计算，自己调整!
+    function CountDown() {
+        if (maxtime >= 0) {
+            msg = maxtime + " 秒后返回主页面";
+            document.all["timer"].innerHTML = msg;
+            maxtime-=1
+            }
+        else{
+            clearInterval(timer);
+        }
+    }
+    timer = setInterval("CountDown()", 1000);
+</SCRIPT>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <title>手机电脑文件互传</title>
+</head>
+<style type="text/css">
+    .my_table {
+        font-family: 微软雅黑,verdana,arial,sans-serif;
+        font-size:12px;
+        color:#333333;
+        border:solid 1px #999999;
+        border-collapse: collapse;
+        margin:auto;
+    }
+    .my_table th {
+        background-color:#c3dde0;
+        padding: 8px;
+        border:solid 1px #a9c6c9;
+    }
+    .my_table tr {
+        background-color:#CECEFF;
+    }
+    .my_table td {
+        padding: 8px;
+        border:solid 1px #a9c6c9;
+    }
+    </style>
+<body bgcolor="#d4e3e5">
+    <h1 align="center">AndroidDrop</h1>
+    <h2 align="center" style="color:red">检测到以下IP地址，请复制本机ipv4地址到手机进行相关操作</h2>
+    {% for i in address %}
+    <h3 align="center"><a href="{{i}}" target=“_blank”>{{i}}</a></h3>
+    {% endfor %}
+    <form action="up_video" enctype='multipart/form-data' method='POST' align="center">
+        <input type="file" name="file" style="margin-top:10px;" multiple/>
+        <input type="submit" value="上传" class="button-new" style="margin-top:10px;"/>
+    </form>
+     <h4 align="center">复制粘贴框</h4>
+    <form action="/up_txt" enctype='multipart/form-data' method="post"align="center"  >
+        Message: <input type="text" name="message">
+        <input type="submit" value="上传">
+    </form>
+<table id="mytable" class="my_table" align="center" width='300px' cellpadding="0" cellspacing="0" border="0" style="margin-top:20px;">
+        <tr align="center">
+            <td>电脑端文件目录共-{{all_file}}-个</td>
+            </tr>
+        {% for i in file_list %}
+        <tr align="center">
+        <td><a href="{{url_for('phone_win_file',file_name=i)}}" target=“_blank”>{{i}}</a></td>
+        </tr>
+        {% endfor %}
+</table>
+<div align="center" style="margin-top:20px;">
+    <a id="sjzl"></a>
+    <a  href="{{url_for('index')}}" id="btn1">首页</a>
+    <a  href="{{url_for('next_page',page=pages-1)}}" id="btn2">上一页</a>
+    <a  href="{{url_for('next_page',page=pages+1)}}" id="btn3">下一页</a>
+    <a  href="{{url_for('next_page',page=all_page)}}" id="btn4">尾页</a>
+    <a>当前 {{pages}} / {{(all_page)}} 页</a>
+
+</div>
+</body>
+</html>
